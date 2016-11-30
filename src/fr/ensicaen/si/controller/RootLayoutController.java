@@ -1,4 +1,4 @@
-package controller;
+package fr.ensicaen.si.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

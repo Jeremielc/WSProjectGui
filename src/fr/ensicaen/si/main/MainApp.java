@@ -1,4 +1,4 @@
-package main;
+package fr.ensicaen.si.main;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class MainApp extends Application {
 		System.out.println(System.getProperty("user.dir"));
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/fxml/searchCustomer.fxml"));
+			loader.setLocation(getClass().getResource("/fr/ensicaen/si/fxml/searchCustomer.fxml"));
 
 			AnchorPane rootLayout = loader.load();
 			Scene scene = new Scene(rootLayout);

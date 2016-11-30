@@ -1,4 +1,4 @@
-package controller;
+package fr.ensicaen.si.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;

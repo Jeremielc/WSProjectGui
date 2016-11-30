@@ -12,7 +12,7 @@
 <AnchorPane fx:id="paneWindow" maxHeight="-Infinity"
 	maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
 	prefHeight="610.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.65"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RootLayoutController">
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ensicaen.si.controller.RootLayoutController">
 	<children>
 		<Text fx:id="windowTitle" layoutX="444.0" layoutY="88.0"
 			strokeType="OUTSIDE" strokeWidth="0.0" text="Search a customer"

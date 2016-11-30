@@ -1,6 +1,6 @@
-package view;
+package fr.ensicaen.si.view;
 
-import controller.RootLayoutController;
+import fr.ensicaen.si.controller.RootLayoutController;
 import javafx.stage.Stage;
 
 public interface IWindowView {
