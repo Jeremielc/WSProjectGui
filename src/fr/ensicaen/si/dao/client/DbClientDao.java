@@ -21,9 +21,9 @@ public class DbClientDao extends AClientDao {
 			
 			while (res.next()) {
 				Client temp = new Client();
-				temp.setId(res.getInt(1));
-				temp.setName(res.getString(3));
-				temp.setSurname(res.getString(4));
+				temp.setId(res.getInt("idNumClient"));
+				temp.setSurname(res.getString("txtNomCli"));
+				temp.setName(res.getString("txtPrenomCli"));
 				clients.add(temp);
 			}
 

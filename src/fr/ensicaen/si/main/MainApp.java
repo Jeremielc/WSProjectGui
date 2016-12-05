@@ -1,6 +1,8 @@
 package fr.ensicaen.si.main;
 
 import java.io.IOException;
+
+import fr.ensicaen.si.controller.RootLayoutController;
 /*import java.util.List;
 
 import fr.ensicaen.si.dao.client.ClientDao;
@@ -27,6 +29,9 @@ public class MainApp extends Application {
 
 			AnchorPane rootLayout = loader.load();
 			Scene scene = new Scene(rootLayout);
+			
+			RootLayoutController rlc = loader.getController();
+			rlc.setOwner(primaryStage);
 
 			primaryStage.setTitle("Search a customer");
 			primaryStage.setScene(scene);

@@ -32,16 +32,25 @@
 			prefHeight="27.0" prefWidth="300.0" AnchorPane.leftAnchor="85.0"
 			AnchorPane.topAnchor="88.0" />
 		<Text fx:id="lblFirstname" layoutX="328.0" layoutY="94.0"
-			strokeType="OUTSIDE" strokeWidth="0.0" text="Fistname : "
+			strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname : "
 			AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="90.0">
 			<font>
 				<Font size="16.0" />
 			</font>
 		</Text>
-
-		<Button fx:id="btnReset" layoutX="719.0" layoutY="162.0"
-			mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" text="Reset"
-			AnchorPane.topAnchor="140.0">
+		<TextField fx:id="txtFirstname" layoutX="422.0" layoutY="86.0"
+			prefHeight="27.0" prefWidth="300.0" AnchorPane.leftAnchor="500.0"
+			AnchorPane.topAnchor="88.0" />
+		<Button fx:id="btnSearch" onAction="#handleSearch" layoutX="610.0"
+			layoutY="162.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0"
+			text="Search" AnchorPane.topAnchor="140.0">
+			<font>
+				<Font size="14.0" />
+			</font>
+		</Button>
+		<Button fx:id="btnReset" onAction="#handleReset" layoutX="719.0"
+			layoutY="162.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0"
+			text="Reset" AnchorPane.topAnchor="140.0">
 			<font>
 				<Font size="14.0" />
 			</font>
@@ -53,16 +62,6 @@
 				<Font size="20.0" />
 			</font>
 		</Text>
-		<TextField fx:id="txtFirstname" layoutX="422.0" layoutY="86.0"
-			prefHeight="27.0" prefWidth="300.0" AnchorPane.leftAnchor="500.0"
-			AnchorPane.topAnchor="88.0" />
-		<Button fx:id="btnSearch" layoutX="610.0" layoutY="162.0"
-			mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" text="Search"
-			AnchorPane.topAnchor="140.0">
-			<font>
-				<Font size="14.0" />
-			</font>
-		</Button>
 		<Button fx:id="btnQuit" layoutX="770.0" layoutY="20.0"
 			mnemonicParsing="false" onAction="#closeProgram" prefHeight="30.0"
 			prefWidth="81.0" text="Quit" AnchorPane.rightAnchor="15.0"
@@ -81,16 +80,16 @@
 		<ComboBox fx:id="cmbSelectCustomer" layoutX="235.0" layoutY="142.0"
 			prefHeight="27.0" prefWidth="300.0" AnchorPane.leftAnchor="180.0"
 			AnchorPane.topAnchor="140.0" />
-		<TableView layoutX="47.0" layoutY="248.0" prefHeight="200.0"
+		<TableView fx:id="table" layoutX="47.0" layoutY="248.0" prefHeight="200.0"
 			prefWidth="509.0" AnchorPane.bottomAnchor="15.0"
 			AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0"
 			AnchorPane.topAnchor="200.0">
 			<columns>
-				<TableColumn prefWidth="250.0" text="Number of operation" />
-				<TableColumn minWidth="0.0" prefWidth="250.0" text="Account number" />
-				<TableColumn prefWidth="150.0" text="Type" />
-				<TableColumn prefWidth="150.0" text="Date" />
-				<TableColumn prefWidth="130.0" text="Amount" />
+				<TableColumn prefWidth="150" text="Operation ID" />
+				<TableColumn prefWidth="150" text="Account number" />
+				<TableColumn prefWidth="150" text="Type" />
+				<TableColumn prefWidth="150" text="Date" />
+				<TableColumn prefWidth="150" text="Amount" />
 			</columns>
 		</TableView>
 	</children>
