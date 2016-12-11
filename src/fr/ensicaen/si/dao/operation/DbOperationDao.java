@@ -33,11 +33,11 @@ public class DbOperationDao implements IOperationDao {
 
 			while (res.next()) {
 				Operation temp = new Operation();
-				temp.idProperty(res.getInt("idNumOperation"));
-				temp.cardNumProperty(res.getString("idNumCarte"));
-				temp.accountNumProperty(res.getString("idNumCompte"));
-				temp.amountProperty(res.getFloat("numMontantOpe"));
-				temp.dateProperty(res.getString("datOpe"));
+				temp.setId(res.getInt("idNumOperation"));
+				temp.setCardNum(res.getString("idNumCarte"));
+				temp.setAccountNum(res.getString("idNumCompte"));
+				temp.setAmount(res.getFloat("numMontantOpe"));
+				temp.setDate(res.getString("datOpe"));
 				operations.add(temp);
 			}
 
@@ -68,11 +68,11 @@ public class DbOperationDao implements IOperationDao {
 			
 			while (res.next()) {
 				Operation temp = new Operation();
-				temp.idProperty(res.getInt("idNumOperation"));
-				temp.cardNumProperty(res.getString("idNumCarte"));
-				temp.accountNumProperty(res.getString("idNumCompte"));
-				temp.amountProperty(res.getFloat("numMontantOpe"));
-				temp.dateProperty(res.getString("datOpe"));
+				temp.setId(res.getInt("idNumOperation"));
+				temp.setCardNum(res.getString("idNumCarte"));
+				temp.setAccountNum(res.getString("idNumCompte"));
+				temp.setAmount(res.getFloat("numMontantOpe"));
+				temp.setDate(res.getString("datOpe"));
 				operations.add(temp);
 			}
 			
@@ -104,11 +104,11 @@ public class DbOperationDao implements IOperationDao {
 			
 			while (res.next()) {
 				Operation temp = new Operation();
-				temp.idProperty(res.getInt("idNumOperation"));
-				temp.cardNumProperty(res.getString("idNumCarte"));
-				temp.accountNumProperty(res.getString("idNumCompte"));
-				temp.amountProperty(res.getFloat("numMontantOpe"));
-				temp.dateProperty(res.getString("datOpe"));
+				temp.setId(res.getInt("idNumOperation"));
+				temp.setCardNum(res.getString("idNumCarte"));
+				temp.setAccountNum(res.getString("idNumCompte"));
+				temp.setAmount(res.getFloat("numMontantOpe"));
+				temp.setDate(res.getString("datOpe"));
 				operations.add(temp);
 			}
 			

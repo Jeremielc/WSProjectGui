@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 
 import fr.ensicaen.si.dao.client.DbClientDao;
+import fr.ensicaen.si.dao.operation.DbOperationDao;
 import fr.ensicaen.si.dao.operation.OperationDao;
 import fr.ensicaen.si.db.DbManagement;
 import fr.ensicaen.si.db.MySqlDbManagement;
@@ -20,8 +22,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.ResizeFeatures;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
@@ -32,9 +37,21 @@ public class RootLayoutController implements Initializable {
 	@FXML
 	private TextField txtName, txtFirstname;
 	@FXML
-	private ComboBox<String> cmbSelectCustomer;
+	private ComboBox<Client> cmbSelectCustomer;
 	@FXML
 	private TableView<Operation> table;
+	@FXML
+	private TableColumn<Operation, Integer> idCol;
+	@FXML
+	private TableColumn<Operation, Integer> operationTypeCol;
+	@FXML
+	private TableColumn<Operation, Float> amountCol;
+	@FXML
+	private TableColumn<Operation, String> cardNumCol;
+	@FXML
+	private TableColumn<Operation, String> accountNumCol;
+	@FXML
+	private TableColumn<Operation, String> dateCol;
 
 	public RootLayoutController() {
 
@@ -44,7 +61,6 @@ public class RootLayoutController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		txtName.setText("");
 		txtFirstname.setText("");
-		table = new TableView<>();
 	}
 
 	@FXML
@@ -79,7 +95,7 @@ public class RootLayoutController implements Initializable {
 
 			if (!clients.isEmpty()) {
 				for (Client c : clients) {
-					cmbSelectCustomer.getItems().add(c.toString());
+					cmbSelectCustomer.getItems().add(c);
 				}
 				cmbSelectCustomer.getSelectionModel().select(0);
 			} else {
@@ -98,53 +114,38 @@ public class RootLayoutController implements Initializable {
 		txtName.setText("");
 		txtFirstname.setText("");
 		cmbSelectCustomer.getItems().clear();
+		table.getItems().clear();
 	}
-	
+
 	@FXML
 	private void handleComboSelection() {
-		String s = cmbSelectCustomer.getSelectionModel().getSelectedItem();
-		String idString = "";
-		
-		for (int i = 0; i < s.length(); i++) {
-			switch (s.charAt(i)) {
-				case 0 :
-					idString += "0";
-					break;
-				case 1 :
-					idString += "1";
-					break;
-				case 2 : 
-					idString += "2";
-					break;
-				case 3 : 
-					idString += "3";
-					break;
-				case 4 : 
-					idString += "4";
-					break;
-				case 5 : 
-					idString += "5";
-					break;
-				case 6 : 
-					idString += "6";
-					break;
-				case 7 : 
-					idString += "7";
-					break;
-				case 8 : 
-					idString += "8";
-					break;
-				case 9 : 
-					idString += "9";
-					break;
-				default :
-					break;
-			}
+		int id = cmbSelectCustomer.getSelectionModel().getSelectedItem().getId();
+
+		if (!OperationDao.getInstance().isDelegated()) {
+			OperationDao.getInstance().setDelegate(new DbOperationDao());
+		}
+
+		List<Operation> operations = OperationDao.getInstance().getById(id);
+		ObservableList<Operation> oList = FXCollections.observableArrayList();
+		for (Operation o : operations) {
+			oList.add(o);
 		}
 		
-		int id = Integer.parseInt(idString);
-		List<Operation> operations = OperationDao.getInstance().getById(id);
-		ObservableList<Operation> operationList = FXCollections.observableList(operations);
+		idCol.setCellValueFactory(new PropertyValueFactory<Operation, Integer>("id"));
+		operationTypeCol.setCellValueFactory(new PropertyValueFactory<Operation, Integer>("operationType"));
+		amountCol.setCellValueFactory(new PropertyValueFactory<Operation, Float>("amount"));
+		cardNumCol.setCellValueFactory(new PropertyValueFactory<Operation, String>("cardNum"));
+		accountNumCol.setCellValueFactory(new PropertyValueFactory<Operation, String>("accountNum"));
+		dateCol.setCellValueFactory(new PropertyValueFactory<Operation, String>("date"));
+		idCol.setPrefWidth(100);
+		operationTypeCol.setPrefWidth(100);
+		amountCol.setPrefWidth(100);
+		cardNumCol.setPrefWidth(150);
+		accountNumCol.setPrefWidth(150);
+		dateCol.setPrefWidth(150);
+		
+		table.getItems().clear();
+		table.setItems(oList);
 	}
 
 	@FXML

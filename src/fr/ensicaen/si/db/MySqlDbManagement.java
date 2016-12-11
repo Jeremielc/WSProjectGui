@@ -21,11 +21,11 @@ public class MySqlDbManagement extends ADbManagement {
 		
 		try {
 			conn = DriverManager.getConnection(bdd_path, User, Password); 
-			if (conn == null) {
+			/*if (conn == null) {
 				System.out.println("Could not connect !!");
 			} else {
 				System.out.println("Connection successfull !");
-			}
+			}*/
 		} catch (SQLException e) {
 			System.err.println("Connection error " + e.getMessage());
 		}
