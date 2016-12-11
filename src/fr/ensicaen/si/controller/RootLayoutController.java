@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.StringTokenizer;
 
 import fr.ensicaen.si.dao.client.DbClientDao;
 import fr.ensicaen.si.dao.operation.DbOperationDao;
@@ -26,7 +25,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.ResizeFeatures;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
@@ -41,17 +39,11 @@ public class RootLayoutController implements Initializable {
 	@FXML
 	private TableView<Operation> table;
 	@FXML
-	private TableColumn<Operation, Integer> idCol;
-	@FXML
-	private TableColumn<Operation, Integer> operationTypeCol;
+	private TableColumn<Operation, Integer> idCol,  operationTypeCol;
 	@FXML
 	private TableColumn<Operation, Float> amountCol;
 	@FXML
-	private TableColumn<Operation, String> cardNumCol;
-	@FXML
-	private TableColumn<Operation, String> accountNumCol;
-	@FXML
-	private TableColumn<Operation, String> dateCol;
+	private TableColumn<Operation, String> cardNumCol, accountNumCol, dateCol;
 
 	public RootLayoutController() {
 
