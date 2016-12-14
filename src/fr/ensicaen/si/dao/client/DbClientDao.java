@@ -26,8 +26,6 @@ public class DbClientDao extends AClientDao {
 				temp.setName(res.getString("txtPrenomCli"));
 				clients.add(temp);
 			}
-
-			dbMan.disconnection();
 		} catch (SQLException ex) {
 			ex.printStackTrace(System.err);
 		}

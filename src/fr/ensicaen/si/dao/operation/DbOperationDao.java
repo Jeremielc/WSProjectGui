@@ -40,8 +40,6 @@ public class DbOperationDao implements IOperationDao {
 				temp.setDate(res.getString("datOpe"));
 				operations.add(temp);
 			}
-
-			dbMan.disconnection();
 		} catch (SQLException ex) {
 			ex.printStackTrace(System.err);
 		}
@@ -60,10 +58,10 @@ public class DbOperationDao implements IOperationDao {
 			dbMan.connection(MySqlDbManagement.NomBase);
 			ResultSet res = dbMan.query("SELECT ope.* " + "FROM tabOperation ope "
 					+ "INNER JOIN relClientCompte cc ON cc.idNumCompte = ope.idNumCompte "
-					+ "INNER JOIN tabClient cl ON cl.idNumClient = cc.idNumClient " + "WHERE cl.txtPrenomCli = '" + name
+					+ "INNER JOIN tabClient cl ON cl.idNumClient = cc.idNumClient " + "WHERE cl.txtNomCli = '" + name
 					+ "' UNION " + "SELECT ope.* " + "FROM tabOperation ope "
 					+ "INNER JOIN tabCarte ca ON ca.idNumCarte = ope.idNumCarte "
-					+ "INNER JOIN tabClient cl ON cl.idNumClient = ca.idNumClient " + "WHERE cl.txtPrenomCli = '" + name
+					+ "INNER JOIN tabClient cl ON cl.idNumClient = ca.idNumClient " + "WHERE cl.txtNomCli = '" + name
 					+ "'");
 			
 			while (res.next()) {
@@ -77,7 +75,6 @@ public class DbOperationDao implements IOperationDao {
 			}
 			
 			result.setOperationList(operations);
-			dbMan.disconnection();
 		} catch (SQLException ex) {
 			ex.printStackTrace(System.err);
 		}
@@ -113,7 +110,6 @@ public class DbOperationDao implements IOperationDao {
 			}
 			
 			result.setOperationList(operations);
-			dbMan.disconnection();
 		} catch (SQLException ex) {
 			ex.printStackTrace(System.err);
 		}

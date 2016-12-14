@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import fr.ensicaen.si.dao.client.DbClientDao;
+import fr.ensicaen.si.dao.client.IClientDao;
+import fr.ensicaen.si.dao.client.JerseyClientDao;
 import fr.ensicaen.si.dao.operation.DbOperationDao;
+import fr.ensicaen.si.dao.operation.JerseyOperationDao;
 import fr.ensicaen.si.dao.operation.OperationDao;
 import fr.ensicaen.si.db.DbManagement;
 import fr.ensicaen.si.db.MySqlDbManagement;
@@ -31,6 +34,7 @@ import javafx.stage.Window;
 public class RootLayoutController implements Initializable {
 
 	private Window owner;
+	private boolean directAccess;
 
 	@FXML
 	private TextField txtName, txtFirstname;
@@ -39,7 +43,7 @@ public class RootLayoutController implements Initializable {
 	@FXML
 	private TableView<Operation> table;
 	@FXML
-	private TableColumn<Operation, Integer> idCol,  operationTypeCol;
+	private TableColumn<Operation, Integer> idCol, operationTypeCol;
 	@FXML
 	private TableColumn<Operation, Float> amountCol;
 	@FXML
@@ -75,12 +79,15 @@ public class RootLayoutController implements Initializable {
 
 			try {
 				dbMan.connection(MySqlDbManagement.NomBase);
-				DbClientDao dbCli = new DbClientDao();
+				IClientDao cDao;
+				cDao = directAccess ? new DbClientDao() : new JerseyClientDao();
+
 				if (firstname == null || firstname.isEmpty()) {
-					clients = dbCli.getByName(name);
+					clients = cDao.getByName(name);
 				} else {
-					clients = dbCli.getByFullname(name, firstname);
+					clients = cDao.getByFullname(name, firstname);
 				}
+
 			} catch (SQLException ex) {
 				ex.printStackTrace(System.err);
 			}
@@ -114,7 +121,7 @@ public class RootLayoutController implements Initializable {
 		int id = cmbSelectCustomer.getSelectionModel().getSelectedItem().getId();
 
 		if (!OperationDao.getInstance().isDelegated()) {
-			OperationDao.getInstance().setDelegate(new DbOperationDao());
+			OperationDao.getInstance().setDelegate(directAccess ? new DbOperationDao() : new JerseyOperationDao());
 		}
 
 		List<Operation> operations = OperationDao.getInstance().getById(id);
@@ -122,7 +129,7 @@ public class RootLayoutController implements Initializable {
 		for (Operation o : operations) {
 			oList.add(o);
 		}
-		
+
 		idCol.setCellValueFactory(new PropertyValueFactory<Operation, Integer>("id"));
 		operationTypeCol.setCellValueFactory(new PropertyValueFactory<Operation, Integer>("operationType"));
 		amountCol.setCellValueFactory(new PropertyValueFactory<Operation, Float>("amount"));
@@ -135,7 +142,7 @@ public class RootLayoutController implements Initializable {
 		cardNumCol.setPrefWidth(150);
 		accountNumCol.setPrefWidth(150);
 		dateCol.setPrefWidth(150);
-		
+
 		table.getItems().clear();
 		table.setItems(oList);
 	}
@@ -147,5 +154,9 @@ public class RootLayoutController implements Initializable {
 
 	public void setOwner(Window owner) {
 		this.owner = owner;
+	}
+
+	public void setDirectAccess(boolean directAccess) {
+		this.directAccess = directAccess;
 	}
 }
