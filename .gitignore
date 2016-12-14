@@ -1,6 +1,5 @@
 bin/*
 build/*
-WebContent/*
 .settings/*
 .classpath
 .project
