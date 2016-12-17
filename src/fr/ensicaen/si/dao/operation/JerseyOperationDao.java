@@ -15,7 +15,7 @@ public class JerseyOperationDao implements IOperationDao {
 	
 	public JerseyOperationDao() {
 		rsclient = javax.ws.rs.client.ClientBuilder.newClient();
-		target = rsclient.target("http://localhost:8080/WSProjectRest/si");
+		target = rsclient.target("http://localhost:8080/WSProjectRest_Hue_Leclerc/si");
 	}
 
 	@Override
