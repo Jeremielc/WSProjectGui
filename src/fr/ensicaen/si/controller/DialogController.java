@@ -65,7 +65,7 @@ public class DialogController implements Initializable {
 			rlc.setDirectAccess(directAccess);
 
 			stage.getIcons().add(new Image(getClass().getResourceAsStream("/fr/ensicaen/si/resources/1481504894_Bank.png")));
-			stage.setTitle("Connection method");
+			stage.setTitle("Search a customer");
 			stage.setResizable(false);
 			stage.setScene(scene);
 			stage.show();
